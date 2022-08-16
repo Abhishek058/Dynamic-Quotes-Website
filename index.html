@@ -5,20 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div id="quotes"></div>
     <div id="author"></div>
-    <button>New Quotes</button>
+    <button id="newQ">New Quotes</button>
     <script>
       const quotes = document.getElementById("quotes");
       const author = document.getElementById("author");
+      const newQ = document.getElementById("newQ");
       let realData = "";
+      let quoteData = "";
 
       const getNewQuotes = () => {
-        let rnum = Math.floor(Math.random() * 10);
-        quotes.innerText = `${realData[rnum].text}`;
-        author.innerText = `${realData[rnum].author}`;
+        let rnum = Math.floor(Math.random() * 1000);
+        quoteData = realData[rnum];
+        quotes.innerText = `${quoteData.text}`;
+        quoteData.author == null
+          ? (author.innerText = "Unknown")
+          : (author.innerText = `${quoteData.author}`);
       };
 
       const getQuotes = async () => {
@@ -29,7 +35,7 @@
           getNewQuotes();
         } catch (error) {}
       };
-
+      newQ.addEventListener("click", getNewQuotes);
       getQuotes();
     </script>
   </body>
