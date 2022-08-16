@@ -4,19 +4,50 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="quotes"></div>
-    <div id="author"></div>
-    <button id="newQ">New Quotes</button>
+    <div class="container">
+      <div class="inner">
+        <div class="box">
+          <p class="number">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Twitter-logo.svg/2491px-Twitter-logo.svg.png"
+              alt="Tweet"
+              id="tweetMe"
+            />
+          </p>
+          <div class="text">
+            <i class="start-quote fas fa-quote-left"></i>
+            <p class="quotes" id="quotes"></p>
+            <p class="author" id="author"></p>
+          </div>
+          <label class="button">
+            <p id="newQ">new Quotes</p>
+          </label>
+        </div>
+      </div>
+    </div>
     <script>
       const quotes = document.getElementById("quotes");
       const author = document.getElementById("author");
       const newQ = document.getElementById("newQ");
+      const tweetMe = document.getElementById("tweetMe");
       let realData = "";
       let quoteData = "";
+
+      const tweetNow = () => {
+        let tweetPost = `https://twitter.com/intent/tweet?text=${quoteData.text}     ${quoteData.author}`;
+        window.open(tweetPost);
+      };
 
       const getNewQuotes = () => {
         let rnum = Math.floor(Math.random() * 1000);
@@ -35,6 +66,8 @@
           getNewQuotes();
         } catch (error) {}
       };
+
+      tweetMe.addEventListener("click", tweetNow);
       newQ.addEventListener("click", getNewQuotes);
       getQuotes();
     </script>
