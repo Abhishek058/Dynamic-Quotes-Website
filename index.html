@@ -16,13 +16,13 @@
       let realData = "";
 
       const getNewQuotes = () => {
-        let rnum = Math.floor(Math.random() * 1000);
+        let rnum = Math.floor(Math.random() * 10);
         quotes.innerText = `${realData[rnum].text}`;
         author.innerText = `${realData[rnum].author}`;
       };
 
       const getQuotes = async () => {
-        const api = "http://type.fit/api/quotes";
+        const api = "https://type.fit/api/quotes";
         try {
           let data = await fetch(api);
           realData = await data.json();
